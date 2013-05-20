@@ -41,7 +41,7 @@
 
 #define FTPPORT 21 
 #define BUFFER_SIZE 32768 
-int DISABLE_PASS = 0; // 0 off 1 on
+int DISABLE_PASS = 1; // 0 off 1 on
 // used for controller make sure nothing else in app using ci
  PadInfo padinfo;
  PadData paddata;
@@ -905,7 +905,7 @@ ssend(conn_s, "501 No user specified\r\n");
 else
 if(strcasecmp(cmd, "PASS") == 0)
 {
-if(split == 1)
+if((split == 1) || strlen(userpass) == 0)
 {
 if(strcmp(D_USER, user) == 0 && strcmp(userpass, param) == 0)
 {
